@@ -1,0 +1,6 @@
+﻿@model IEnumerable<string>
+
+                    @foreach (var link in Model)
+                    {
+                        @Html.RouteLink(link, new { controller = "Catalog", action = "List", category = link }, new { @class = "dropdown-item list-group-item list-group-item-action" })
+                    }

@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNet.Identity
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title – магазин</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm fixed-top">
+            <a href='@Url.Action( "Index", "Home")' class="navbar-brand">
+                <img src="~/Content/img/FashionR.png" height="30" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Магазин", "Index", "Home", "", new { @class = "nav-link " })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Доставка", "Delivery", "Catalog", "", new { @class = "nav-link " })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Особенности заказа", "AboutOrder", "Information", "", new { @class = "nav-link " })
+                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категории</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                @{ Html.RenderAction("Menu", "Catalog"); }
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <a href="#" id="cart" class="navbar-text">Корзина</a>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </nav>
+
+        <main role="main" class="container-fluid">
+            @RenderBody()
+        </main>
+
+        <hr />
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <a href='@Url.Action( "Index", "Home")' class="navbar-brand">
+                            <img src="~/Content/img/FashionR.png" class="img-fluid" />
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-uppercase">И н ф о р м а ц и я</p>
+                        <ul class="list-unstyled">
+                            <li>О компании</li>
+                            <li>Оплата</li>
+                            <li>Доставка</li>
+                            <li>Прием вещей</li>
+                            <li>Политика конфиденциальности</li>
+                            <li>Публичная оферта</li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <p>К О Н Т А К Т Ы</p>
+                        <ul class="list-unstyled">
+                            <li>info@oursite.ru</li>
+                            <li>+7 906 123 45 56</li>
+                            <li>+7 963 321 65 45</li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <p class=" text-center">М Ы В С О Ц С Е Т Я Х :</p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <p>&copy; @DateTime.Now.Year – Все лучшее на детям</p>
+                </div>
+            </div>
+        </footer>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script>
+            var cartCount = 0;
+            var addToCart = document.getElementsByClassName("addToCart");
+            for (var i = 0; i < addToCart.length; i++) {
+                addToCart[i].onclick = function () {
+                    console.log("addToCart test");
+                    $.ajax({
+                        type: 'get',
+                        url: "api/Things",
+                        data: addToCart[i].id
+                    }).done(function (data) {
+                            console.log("Вернулось: " + data.Description)
+                        });
+                    cartCount += 1;
+                    document.getElementById("cart").innerHTML = "Корзина (" + cartCount + ")";
+
+                }
+            }
+            
+        </script>
+    </body>
+</html>

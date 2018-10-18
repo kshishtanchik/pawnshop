@@ -1,0 +1,34 @@
+﻿@model  IQueryable<TradeInChilThings.Domain.Thing>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        @Html.Raw("<img class='card-img-top' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.Images[0].Picture) + "\"/>")
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <h6 class="card-subtitle text-muted">@Html.ActionLink(item.Category.Name, "List", "Catalog", new { category = item.Category.Name }, new { id = item.Id, @class = "text-muted" })</h6>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                            <div class="card-footer text-muted">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col align-self-start">
+                                            <h5>@Html.DisplayFor(modelItem => item.Price)<span class="badge badge-info"> р.</span></h5>
+                                        </div>
+                                        <div class="align-self-end">
+                                            <a class="btn btn-primary addToCart" id="">+ в корзину @Html.DisplayFor(modelItem => item.Id)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
