@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "komssionka", "komssionka\ko
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "komssionka.Tests", "komssionka.Tests\komssionka.Tests.csproj", "{9B0BB475-85BC-4A64-B255-051233FF23A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeInChilThings.Domain", "..\TradeInChilThings\TradeInChilThings.Domain\TradeInChilThings.Domain.csproj", "{F94D246A-A29E-49FF-ACCE-FF235858CBDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeInChilThings.Domain", "TradeInChilThings.Domain\TradeInChilThings.Domain.csproj", "{F94D246A-A29E-49FF-ACCE-FF235858CBDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

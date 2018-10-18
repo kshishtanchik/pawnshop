@@ -363,7 +363,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TradeInChilThings\TradeInChilThings.Domain\TradeInChilThings.Domain.csproj">
+    <ProjectReference Include="..\TradeInChilThings.Domain\TradeInChilThings.Domain.csproj">
       <Project>{f94d246a-a29e-49ff-acce-ff235858cbda}</Project>
       <Name>TradeInChilThings.Domain</Name>
     </ProjectReference>
